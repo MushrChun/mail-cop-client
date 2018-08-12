@@ -13,10 +13,12 @@ class TextArea extends Component {
         return (
 
             <TextField
+                required
                 id="Text"
                 label="Text"
-                // value={this.state.name}
-                // onChange={this.handleChange('name')}
+                error={this.props.text.error}
+                value={this.props.text.value}
+                onChange={(event)=> this.props.onChange('text', event)}
                 rows="4"
                 margin="normal"
                 fullWidth

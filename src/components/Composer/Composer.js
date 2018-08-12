@@ -22,8 +22,6 @@ const styles = theme => ({
 
 class Composer extends Component {
 
-
-
     render() {
 
         const { classes } = this.props;
@@ -34,9 +32,9 @@ class Composer extends Component {
                         New  Mail
                     </Typography>
                     <form className={classes.container} noValidate autoComplete="off">
-                        <SubjectArea />
-                        <RecipientArea />
-                        <TextArea />
+                        <SubjectArea subject={this.props.subject} onChange={this.props.onChange}/>
+                        <RecipientArea to={this.props.to} cc={this.props.cc} bcc={this.props.bcc} onChange={this.props.onChange}/>
+                        <TextArea text={this.props.text} onChange={this.props.onChange}/>
                     </form>
                     <Operator />
                 </Paper>

@@ -36,10 +36,12 @@ class RecipientArea extends Component {
         return (
             <Aux>
                 <TextField
+                    required
                     id="To"
                     label="To"
-                    // value={this.state.name}
-                    // onChange={this.handleChange('name')}
+                    value={this.props.to.value}
+                    error={this.props.to.error}
+                    onChange={(event) => this.props.onChange('to', event)}
                     margin="normal"
                     fullWidth
                     InputLabelProps={{
@@ -73,8 +75,9 @@ class RecipientArea extends Component {
                     <TextField
                         id="CC"
                         label="CC"
-                        // value={this.state.name}
-                        // onChange={this.handleChange('name')}
+                        value={this.props.cc.value}
+                        error={this.props.cc.error}
+                        onChange={(event) => this.props.onChange('cc', event)}
                         margin="normal"
                         fullWidth
                         InputLabelProps={{
@@ -94,8 +97,9 @@ class RecipientArea extends Component {
                     <TextField
                         id="BCC"
                         label="BCC"
-                        // value={this.state.name}
-                        // onChange={this.handleChange('name')}
+                        value={this.props.bcc.value}
+                        error={this.props.bcc.error}
+                        onChange={(event) => this.props.onChange('bcc', event)}
                         margin="normal"
                         fullWidth
                         InputLabelProps={{

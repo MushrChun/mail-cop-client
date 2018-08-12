@@ -15,10 +15,12 @@ class SubjectArea extends Component {
         return (
 
             <TextField
+                required
                 id="Subject"
                 label="Subject"
-                // value={this.state.name}
-                // onChange={this.handleChange('name')}
+                error={this.props.subject.error}
+                value={this.props.subject.value}
+                onChange={(event)=> this.props.onChange('subject', event)}
                 margin="normal"
                 fullWidth
                 InputLabelProps={{
