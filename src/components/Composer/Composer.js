@@ -36,7 +36,7 @@ class Composer extends Component {
                         <RecipientArea to={this.props.to} cc={this.props.cc} bcc={this.props.bcc} onChange={this.props.onChange}/>
                         <TextArea text={this.props.text} onChange={this.props.onChange}/>
                     </form>
-                    <Operator />
+                    <Operator loading={this.props.loading} success={this.props.success} send={this.props.send} clear={this.props.clear}/>
                 </Paper>
             </div>
         )

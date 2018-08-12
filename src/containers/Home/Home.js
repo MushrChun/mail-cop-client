@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Composer from '../../components/Composer/Composer';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
-import { checkValidity } from '../../shared/utility';
+import { checkValidity, genInitState, alertPreparation } from '../../shared/utility';
+import AlertDialog from '../../components/AlertDialog/AlertDialog';
+import Notification from '../../components/Notification/Notification';
+import Aux from '../../hoc/Aux/Aux';
 
 class Home extends Component {
 
@@ -26,7 +29,30 @@ class Home extends Component {
         text: {
             value: 'blabla',
             error: false
-        }
+        },
+        loading: false,
+        success: false,
+        alertOpen: false,
+        alertContent: '',
+        notificationOpen: true,
+        notificationContent: 'Success'
+    }
+
+    onSendHandler = () => {
+
+        // alertPreparation(this.state);
+
+        // this.setState(
+        //     {
+        //         ...this.state,
+        //         alertOpen: true,
+        //         alertContent: notification
+        //     }
+        // );
+    }
+
+    onClearHandler = () => {
+        this.setState(genInitState());
     }
 
     onChangeHandler = (type, event) => {
@@ -42,15 +68,48 @@ class Home extends Component {
         this.setState(newState);
     }
 
+    onAlertCloseHandler = () => {
+        this.setState(
+            {
+                ...this.state,
+                alertOpen: false
+            }
+        );
+    }
+
+    onNotificationCloseHandler = () => {
+        this.setState(
+            {
+                ...this.state,
+                notificationOpen: false
+            }
+        );
+    }
+
     render() {
         return (
-            <Composer
-                subject={this.state.subject}
-                to={this.state.to}
-                cc={this.state.cc}
-                bcc={this.state.bcc}
-                text={this.state.text}
-                onChange={this.onChangeHandler} />
+            <Aux>
+                <Composer
+                    subject={this.state.subject}
+                    to={this.state.to}
+                    cc={this.state.cc}
+                    bcc={this.state.bcc}
+                    text={this.state.text}
+                    onChange={this.onChangeHandler}
+                    loading={this.state.loading}
+                    success={this.state.success}
+                    send={this.onSendHandler}
+                    clear={this.onClearHandler} />
+                <AlertDialog
+                    open={this.state.alertOpen}
+                    content={this.state.alertContent}
+                    close={this.onAlertCloseHandler}
+                />
+                <Notification 
+                    open={this.state.notificationOpen} 
+                    onClose={this.onNotificationCloseHandler}
+                    content={this.state.notificationContent}/>
+            </Aux>
         )
     }
 }
