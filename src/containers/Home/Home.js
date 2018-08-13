@@ -4,51 +4,61 @@ import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
 import { checkValidity, genInitState, alertPreparation } from '../../shared/utility';
 import AlertDialog from '../../components/AlertDialog/AlertDialog';
+import HelpDialog from '../../components/HelpDialog/HelpDialog';
 import Notification from '../../components/Notification/Notification';
 import Aux from '../../hoc/Aux/Aux';
+import { sendEmail, messageTransform } from '../../shared/api'
 
 class Home extends Component {
 
-    state = {
-        subject: {
-            value: 'subject',
-            error: false
-        },
-        to: {
-            value: 'mushcrhun@gmail.com',
-            error: false
-        },
-        cc: {
-            value: '',
-            error: false
-        },
-        bcc: {
-            value: '',
-            error: false
-        },
-        text: {
-            value: 'blabla',
-            error: false
-        },
-        loading: false,
-        success: false,
-        alertOpen: false,
-        alertContent: '',
-        notificationOpen: true,
-        notificationContent: 'Success'
+    state = genInitState();
+
+    startLoading = () => {
+        this.setState({
+            ...this.state,
+            loading: true
+        })
+    }
+
+    endLoading = (status) => {
+        this.setState({
+            ...this.state,
+            loading: false,
+            success: status
+        })
+    }
+
+    popNotification = (content) => {
+        this.setState(
+            {
+                ...this.state,
+                notificationOpen: true,
+                notificationContent: content
+            }
+        );
     }
 
     onSendHandler = () => {
 
-        // alertPreparation(this.state);
-
-        // this.setState(
-        //     {
-        //         ...this.state,
-        //         alertOpen: true,
-        //         alertContent: notification
-        //     }
-        // );
+        if (!this.state.touched) {
+            this.popNotification('Ops! You never write anything!');
+            return;
+        }
+        const payload = messageTransform(this.state);
+        console.log(payload);
+        this.startLoading();
+        sendEmail(payload)
+            .then((content) => {
+                const message = content.data.payload.message;
+                this.endLoading(true);
+                this.popNotification(message);
+            })
+            .catch((err) => {
+                const message = err.response.data.payload.message;
+                this.endLoading(false);
+                console.log(err.response);
+                this.popNotification(message);
+            });
     }
 
     onClearHandler = () => {
@@ -59,6 +69,7 @@ class Home extends Component {
         const newValue = event.target.value;
         const newState = {
             ...this.state,
+            touched: true,
             [type]: {
                 value: newValue,
                 error: !checkValidity(type, newValue)
@@ -77,11 +88,30 @@ class Home extends Component {
         );
     }
 
+    onHelpCloseHandler = () => {
+        this.setState(
+            {
+                ...this.state,
+                helpOpen: false
+            }
+        );
+    }
+
+
     onNotificationCloseHandler = () => {
         this.setState(
             {
                 ...this.state,
                 notificationOpen: false
+            }
+        );
+    }
+
+    onHelpOpenHandler = () => {
+        this.setState(
+            {
+                ...this.state,
+                helpOpen: true
             }
         );
     }
@@ -95,20 +125,24 @@ class Home extends Component {
                     cc={this.state.cc}
                     bcc={this.state.bcc}
                     text={this.state.text}
+                    from={this.state.from}
                     onChange={this.onChangeHandler}
                     loading={this.state.loading}
                     success={this.state.success}
-                    send={this.onSendHandler}
-                    clear={this.onClearHandler} />
+                    onSend={this.onSendHandler}
+                    onClear={this.onClearHandler}
+                    onHelpOpen={this.onHelpOpenHandler} />
                 <AlertDialog
                     open={this.state.alertOpen}
                     content={this.state.alertContent}
-                    close={this.onAlertCloseHandler}
-                />
-                <Notification 
-                    open={this.state.notificationOpen} 
+                    onClose={this.onAlertCloseHandler} />
+                <HelpDialog
+                    open={this.state.helpOpen}
+                    onClose={this.onHelpCloseHandler} />
+                <Notification
+                    open={this.state.notificationOpen}
                     onClose={this.onNotificationCloseHandler}
-                    content={this.state.notificationContent}/>
+                    content={this.state.notificationContent} />
             </Aux>
         )
     }

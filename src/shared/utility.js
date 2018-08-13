@@ -27,6 +27,10 @@ export const genInitState = () => {
             value: '',
             error: false
         },
+        from: {
+            value: '',
+            error: false
+        },
         to: {
             value: '',
             error: false
@@ -44,6 +48,12 @@ export const genInitState = () => {
             error: false
         },
         loading: false,
-        success: false
+        success: false,
+        alertOpen: false,
+        helpOpen: false,
+        alertContent: '',
+        notificationOpen: false,
+        notificationContent: 'Success',
+        touched: false
     }
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -14,20 +13,10 @@ const styles = theme => ({
 
 class Notification extends Component {
 
-    // handleClick = () => {
-    //     this.setState({ open: true });
-    // };
-
-    // handleClose = (event, reason) => {
-    //     if (reason === 'clickaway') {
-    //         return;
-    //     }
-
-    //     this.setState({ open: false });
-    // };
-
     render() {
         const { classes } = this.props;
+        const { open, onClose, content } = this.props;
+
         return (
             <div>
                 <Snackbar
@@ -35,21 +24,20 @@ class Notification extends Component {
                         vertical: 'bottom',
                         horizontal: 'center',
                     }}
-                    open={this.props.open}
+                    open={open}
                     autoHideDuration={6000}
-                    onClose={this.props.onClose}
+                    onClose={onClose}
                     ContentProps={{
                         'aria-describedby': 'message-id',
                     }}
-                    message={<span id="message-id">{this.props.content}</span>}
+                    message={<span id="message-id">{content}</span>}
                     action={[
                         <IconButton
                             key="close"
                             aria-label="Close"
                             color="inherit"
                             className={classes.close}
-                            // onClick={this.props.onCl}
-                        >
+                            onClick={onClose}>
                             <CloseIcon />
                         </IconButton>,
                     ]}

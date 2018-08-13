@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import MailCircle from '@material-ui/icons/Mail';
+import PeopleCircle from '@material-ui/icons/People';
 
 const styles = theme => ({
 });
 
-class SubjectArea extends Component {
+class SenderArea extends Component {
 
     render() {
-        const { subject, onChange } = this.props;
+        const { from, onChange } = this.props;
 
         return (
             <TextField
                 required
-                id="Subject"
-                label="Subject"
-                error={subject.error}
-                value={subject.value}
-                onChange={(event)=> onChange('subject', event)}
+                id="From"
+                label="From"
+                error={from.error}
+                value={from.value}
+                onChange={(event)=> onChange('from', event)}
                 margin="normal"
                 fullWidth
                 InputLabelProps={{
@@ -28,7 +28,7 @@ class SubjectArea extends Component {
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                            <MailCircle />
+                            <PeopleCircle />
                         </InputAdornment>
                     ),
                 }}
@@ -37,4 +37,4 @@ class SubjectArea extends Component {
     }
 }
 
-export default withStyles(styles)(SubjectArea);
+export default withStyles(styles)(SenderArea);

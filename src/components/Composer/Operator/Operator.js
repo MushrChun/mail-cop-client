@@ -47,36 +47,13 @@ const styles = theme => ({
 
 class Operator extends Component {
 
-    // state = {
-    //     loading: false,
-    //     success: false,
-    // };
-
-    // handleButtonClick = () => {
-    //     if (!this.state.loading) {
-    //         this.setState(
-    //             {
-    //                 success: false,
-    //                 loading: true,
-    //             },
-    //             () => {
-    //                 this.timer = setTimeout(() => {
-    //                     this.setState({
-    //                         loading: false,
-    //                         success: true,
-    //                     });
-    //                 }, 2000);
-    //             },
-    //         );
-    //     }
-    // };
-
     render() {
-        const { loading, success } = this.props;
+        const { loading, success, onClear, onSend } = this.props;
         const { classes } = this.props;
         const buttonClassname = classNames({
             [classes.buttonSuccess]: success,
         });
+        
         return (
             <div className={classes.root}>
                 <div className={classes.wrapper}>
@@ -84,18 +61,27 @@ class Operator extends Component {
                         variant="fab"
                         color="secondary"
                         className={buttonClassname}
-                        onClick={this.props.send}
+                        onClick={onSend}
                     >
                         {success ? <CheckIcon /> : <SendIcon />}
                     </Button>
                     {loading && <CircularProgress size={68} className={classes.fabProgress} />}
                 </div>
                 <div className={classes.delete}>
-                    <IconButton 
-                        aria-label="Delete"
-                        onClick={this.props.clear}>
-                        <DeleteIcon />
-                    </IconButton>
+                    {!success &&
+                        <IconButton
+                            aria-label="Delete"
+                            onClick={onClear}>
+                            <DeleteIcon />
+                        </IconButton>
+                    }
+                    {success &&
+                        <Button
+                            color="secondary"
+                            onClick={onClear}>
+                            Send A New
+                    </Button>
+                    }
                 </div>
             </div>
         )

@@ -31,17 +31,17 @@ class RecipientArea extends Component {
     }
 
     render() {
+        const { to, cc, bcc, onChange } = this.props;
 
-        const { classes } = this.props;
         return (
             <Aux>
                 <TextField
                     required
                     id="To"
                     label="To"
-                    value={this.props.to.value}
-                    error={this.props.to.error}
-                    onChange={(event) => this.props.onChange('to', event)}
+                    value={to.value}
+                    error={to.error}
+                    onChange={(event) => onChange('to', event)}
                     margin="normal"
                     fullWidth
                     InputLabelProps={{
@@ -71,13 +71,14 @@ class RecipientArea extends Component {
                         )
                     }}
                 />
-                {this.state.showCC &&
+                {
+                    this.state.showCC &&
                     <TextField
                         id="CC"
                         label="CC"
-                        value={this.props.cc.value}
-                        error={this.props.cc.error}
-                        onChange={(event) => this.props.onChange('cc', event)}
+                        value={cc.value}
+                        error={cc.error}
+                        onChange={(event) => onChange('cc', event)}
                         margin="normal"
                         fullWidth
                         InputLabelProps={{
@@ -97,9 +98,9 @@ class RecipientArea extends Component {
                     <TextField
                         id="BCC"
                         label="BCC"
-                        value={this.props.bcc.value}
-                        error={this.props.bcc.error}
-                        onChange={(event) => this.props.onChange('bcc', event)}
+                        value={bcc.value}
+                        error={bcc.error}
+                        onChange={(event) => onChange('bcc', event)}
                         margin="normal"
                         fullWidth
                         InputLabelProps={{
