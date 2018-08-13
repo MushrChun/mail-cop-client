@@ -48,7 +48,7 @@ const styles = theme => ({
 class Operator extends Component {
 
     render() {
-        const { loading, success, onClear, onSend } = this.props;
+        const { loading, success, onClear, onSend, sendDisabled } = this.props;
         const { classes } = this.props;
         const buttonClassname = classNames({
             [classes.buttonSuccess]: success,
@@ -60,6 +60,7 @@ class Operator extends Component {
                     <Button
                         variant="fab"
                         color="secondary"
+                        disabled={sendDisabled}
                         className={buttonClassname}
                         onClick={onSend}
                     >

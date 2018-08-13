@@ -23,16 +23,16 @@ class HelpDialog extends Component {
               - FROM FIELD is compulsory and shoule be a valid email address.
             </DialogContentText>
             <DialogContentText >
-              - TO FIELD is compulsory and shoule be an array of valid addresses which can be seperated by ','. One address is supported as well.
+              - TO FIELD is compulsory and shoule be an array of valid addresses which can be seperated by ', '. One address is supported as well.
             </DialogContentText>
             <DialogContentText >
               - SUBJECT FIELD is compulsory and shoule be non-empty string.
             </DialogContentText>
             <DialogContentText >
-              - CC FIELD is optional or shoule be an array of valid addresses which can be seperated by ',';\. One address is supported as well.
+              - CC FIELD is optional or shoule be an array of valid addresses which can be seperated by ', '. One address is supported as well.
             </DialogContentText>
             <DialogContentText >
-              - BCC FIELD is optional or shoule be an array of valid addresses which can be seperated by ','. One address is supported as well.
+              - BCC FIELD is optional or shoule be an array of valid addresses which can be seperated by ', '. One address is supported as well.
             </DialogContentText>
             <DialogContentText >
               - Text FIELD is compulsory and shoule be non-empty string.

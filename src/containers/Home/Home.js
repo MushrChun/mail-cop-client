@@ -29,6 +29,7 @@ class Home extends Component {
     }
 
     popNotification = (content) => {
+        if(!content) return;
         this.setState(
             {
                 ...this.state,
@@ -67,6 +68,7 @@ class Home extends Component {
             .then((content) => {
                 const message = content.data.payload.message;
                 this.endLoading(true);
+                this.disableSendBtn();
                 this.popNotification(message);
             })
             .catch((err) => {
@@ -75,6 +77,15 @@ class Home extends Component {
                 console.log(err.response);
                 this.popNotification(message);
             });
+    }
+
+    disableSendBtn = () =>{
+        this.setState(
+            {
+                ...this.state,
+                sendDisabled: true
+            }
+        );
     }
 
     onClearHandler = () => {
@@ -148,6 +159,7 @@ class Home extends Component {
                     success={this.state.success}
                     onSend={this.onSendHandler}
                     onClear={this.onClearHandler}
+                    sendDisabled={this.state.sendDisabled}
                     onHelpOpen={this.onHelpOpenHandler} />
                 <AlertDialog
                     open={this.state.alertOpen}

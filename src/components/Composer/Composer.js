@@ -28,7 +28,7 @@ class Composer extends Component {
 
     render() {
         const { classes } = this.props;
-        const { onHelpOpen, from, to, cc, bcc, subject, text, loading, success, onChange, onSend, onClear } = this.props;
+        const { onHelpOpen, from, to, cc, bcc, subject, text, loading, success, onChange, onSend, onClear, sendDisabled } = this.props;
 
         return (
             <div className={classes.root}>
@@ -45,7 +45,7 @@ class Composer extends Component {
                         <SubjectArea subject={subject} onChange={onChange} />
                         <TextArea text={text} onChange={onChange} />
                     </form>
-                    <Operator loading={loading} success={success} onSend={onSend} onClear={onClear} />
+                    <Operator loading={loading} success={success} onSend={onSend} onClear={onClear} sendDisabled={sendDisabled}/>
                 </Paper>
             </div>
         )

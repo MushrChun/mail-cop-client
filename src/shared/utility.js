@@ -8,6 +8,11 @@ export const checkValidity = (type, value) => {
     else if (type === 'from') {
         return validator.isEmail(value.trim())
     }
+    else if( type === 'cc'||  type === 'bcc'){
+        if(value.length === 0) return true;
+        const list = value.split(',');
+        return list.every(((item) => validator.isEmail(item.trim())));
+    }
     else {
         const list = value.split(',');
         return list.every(((item) => validator.isEmail(item.trim())));
@@ -71,6 +76,7 @@ export const genInitState = () => {
         },
         loading: false,
         success: false,
+        sendDisabled: false,
         alertOpen: false,
         helpOpen: false,
         alertContent: '',
