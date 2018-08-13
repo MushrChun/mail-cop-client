@@ -38,10 +38,26 @@ class Home extends Component {
         );
     }
 
+    popAlert = (content) => {
+        this.setState(
+            {
+                ...this.state,
+                alertOpen: true,
+                alertContent: content
+            }
+        );
+    }
+
     onSendHandler = () => {
 
         if (!this.state.touched) {
             this.popNotification('Ops! You never write anything!');
+            return;
+        }
+
+        const alertInfo = alertPreparation(this.state);
+        if (!alertInfo.pass) {
+            this.popAlert(alertInfo.content);
             return;
         }
         const payload = messageTransform(this.state);
@@ -72,7 +88,8 @@ class Home extends Component {
             touched: true,
             [type]: {
                 value: newValue,
-                error: !checkValidity(type, newValue)
+                error: !checkValidity(type, newValue),
+                touched: true
             }
         }
         console.log(newState);

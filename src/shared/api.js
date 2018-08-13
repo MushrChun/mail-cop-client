@@ -8,12 +8,12 @@ const instance = axios.create({
 export const messageTransform = ({ subject, to, cc, bcc, text, from }) => {
 
     const content =  {
-        subject: subject.value,
-        from: from.value,
-        to: to.value.split(','),
-        cc: cc && cc.value.split(','),
-        bcc: cc && bcc.value.split(','),
-        text: text.value
+        subject: subject.value.trim(),
+        from: from.value.trim(),
+        to: to.value.split(',').map( val => val.trim()),
+        cc: cc && cc.value.split(',').map( val => val.trim()),
+        bcc: cc && bcc.value.split(',').map( val => val.trim()),
+        text: text.value.trim()
     }
     return {
         message: content
