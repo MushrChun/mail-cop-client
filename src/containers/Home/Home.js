@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Composer from '../../components/Composer/Composer';
-import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions';
 import { checkValidity, genInitState, alertPreparation } from '../../shared/utility';
 import AlertDialog from '../../components/AlertDialog/AlertDialog';
 import HelpDialog from '../../components/HelpDialog/HelpDialog';
@@ -177,14 +175,5 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
