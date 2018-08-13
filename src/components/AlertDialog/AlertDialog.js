@@ -18,7 +18,7 @@ class AlertDialog extends Component {
           onClose={onClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description">
-          <DialogTitle id="alert-dialog-title">Email Fields Require A Fixture</DialogTitle>
+          <DialogTitle id="alert-dialog-title">Error in the form</DialogTitle>
           <DialogContent>
             <DialogContentText>
               {content}

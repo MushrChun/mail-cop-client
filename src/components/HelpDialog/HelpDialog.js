@@ -20,22 +20,22 @@ class HelpDialog extends Component {
               You can send the email to recipents via this app, please make the message meet the following requirements:
             </DialogContentText>
             <DialogContentText>
-              - FROM FIELD is compulsory and shoule be a valid email address.
+              - [From] is compulsory and shoule be a valid email address.
             </DialogContentText>
             <DialogContentText >
-              - TO FIELD is compulsory and shoule be an array of valid addresses which can be seperated by ', '. One address is supported as well.
+              - [To] is compulsory and shoule be an array of valid addresses which can be seperated by ', '. One address is supported as well.
             </DialogContentText>
             <DialogContentText >
-              - SUBJECT FIELD is compulsory and shoule be non-empty string.
+              - [Subject] is compulsory and shoule be non-empty string.
             </DialogContentText>
             <DialogContentText >
-              - CC FIELD is optional or shoule be an array of valid addresses which can be seperated by ', '. One address is supported as well.
+              - [Cc] is optional or shoule be an array of valid addresses which can be seperated by ', '. One address is supported as well.
             </DialogContentText>
             <DialogContentText >
-              - BCC FIELD is optional or shoule be an array of valid addresses which can be seperated by ', '. One address is supported as well.
+              - [Bcc] is optional or shoule be an array of valid addresses which can be seperated by ', '. One address is supported as well.
             </DialogContentText>
             <DialogContentText >
-              - Text FIELD is compulsory and shoule be non-empty string.
+              - [Text] is compulsory and shoule be non-empty string.
             </DialogContentText>
           </DialogContent>
         </Dialog>

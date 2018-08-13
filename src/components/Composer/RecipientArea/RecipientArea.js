@@ -44,6 +44,7 @@ class RecipientArea extends Component {
                     onChange={(event) => onChange('to', event)}
                     margin="normal"
                     fullWidth
+                    placeholder="use commas to separate multiple email addresses"
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -59,13 +60,13 @@ class RecipientArea extends Component {
                                     aria-label="Toggle CC visibility"
                                     onClick={this.ccToggleHandler}
                                 >
-                                    <GroupAddCircle />
+                                    Cc
                                 </IconButton>
                                 <IconButton
                                     aria-label="Toggle BCC visibility"
                                     onClick={this.bccToggleHandler}
                                 >
-                                    <VisibilityOff />
+                                    Bcc
                                 </IconButton>
                             </InputAdornment>
                         )
@@ -74,10 +75,11 @@ class RecipientArea extends Component {
                 {
                     this.state.showCC &&
                     <TextField
-                        id="CC"
-                        label="CC"
+                        id="Cc"
+                        label="Cc"
                         value={cc.value}
                         error={cc.error}
+                        placeholder="use commas to separate multiple email addresses"
                         onChange={(event) => onChange('cc', event)}
                         margin="normal"
                         fullWidth
@@ -96,10 +98,11 @@ class RecipientArea extends Component {
                 {
                     this.state.showBCC &&
                     <TextField
-                        id="BCC"
-                        label="BCC"
+                        id="Bcc"
+                        label="Bcc"
                         value={bcc.value}
                         error={bcc.error}
+                        placeholder="use commas to separate multiple email addresses"
                         onChange={(event) => onChange('bcc', event)}
                         margin="normal"
                         fullWidth

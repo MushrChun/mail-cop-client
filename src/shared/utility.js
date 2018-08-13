@@ -35,7 +35,7 @@ export const alertPreparation = (state) => {
         return undefined;
     }).filter((val => val))
     const pass = invalidArray.length === 0;
-    const content = invalidArray.join(', ').concat(' invalid, check the Manul please');;
+    const content = 'Invalid ' + invalidArray.join(', ') + '. Read the manual please ;-)';
     return {
         pass,
         content

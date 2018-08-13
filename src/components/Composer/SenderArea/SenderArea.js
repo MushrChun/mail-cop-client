@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import PeopleCircle from '@material-ui/icons/People';
+import PersonCircle from '@material-ui/icons/Person';
 
 const styles = theme => ({
 });
@@ -28,7 +28,7 @@ class SenderArea extends Component {
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                            <PeopleCircle />
+                            <PersonCircle />
                         </InputAdornment>
                     ),
                 }}
